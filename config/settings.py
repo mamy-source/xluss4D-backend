@@ -141,6 +141,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # === DJANGO REST FRAMEWORK ===
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication', #token
+    ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ],
