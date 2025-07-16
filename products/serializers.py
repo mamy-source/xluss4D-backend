@@ -1,7 +1,13 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import UserProfile, UserRefreshToken
 
+class UserRefreshTokenSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField(read_only=True)  
+
+    class Meta:
+        model = UserRefreshToken
+        fields = ['user', 'token', 'created_at']
 
 class UserSerializer(serializers.ModelSerializer):
     """Serializer de base pour les infos du modèle User"""
