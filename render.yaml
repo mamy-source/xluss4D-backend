@@ -5,7 +5,7 @@ services:
     region: oregon  # vous pouvez choisir la région la plus proche (a rechercher)
     branch: main
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn xluss4D-backend.wsgi
+    startCommand: gunicorn xluss4D-backend.wsgi:application
     autoDeploy: true
     envVars:
       - key: SECRET_KEY
