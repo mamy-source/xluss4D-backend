@@ -4,6 +4,8 @@ from rest_framework import status
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import UserRefreshToken
+from rest_framework.authtoken.models import Token
+from rest_framework.permissions import IsAuthenticated
 from .serializers import UserRefreshTokenSerializer
 
 
@@ -41,3 +43,19 @@ class RegisterView(APIView):
             'access': access_token,
             'refresh': refresh_token_data
         }, status=status.HTTP_201_CREATED)
+    
+
+    def get(self, request):
+        users = User.objects.all()
+        user_data = []
+
+        for user in users:
+            # Récupère ou crée un token pour chaque utilisateur
+            token, created = Token.objects.get_or_create(user=user)
+            user_data.append({
+                'username': user.username,
+                'email': user.email,
+                'token': token.key,
+            })
+
+        return Response({'users': user_data}, status=status.HTTP_200_OK)

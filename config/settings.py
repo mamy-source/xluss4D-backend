@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     # applications in the project
-    'products'
+    'products',
+    # activer token
+    'rest_framework.authtoken',
 
 ]
 
