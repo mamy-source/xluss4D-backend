@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-d2k^6x+(a*#9nu7=4=x7ey3ww@frjn$%(&=6_7_)4jc1235+^y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.onrender.com']
 
 
 # Application definition
@@ -87,10 +87,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('DATABASE_URL', default='sqlite:///db.sqlite3')
+        default=config('DATABASE_URL'),
+        conn_max_age=600,  # pour les performances en production
     )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
