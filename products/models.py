@@ -51,8 +51,8 @@ class SubCategory(models.Model):
     created_at = models.DateTimeField(auto_now_add=True),
     update_at = models.DateTimeField(auto_now=True)
 
-    class Meta:
-        unique_together = ("Category", "name")
+    '''class Meta:
+        unique_together = ("Category", "name")'''
 
     def __str__(self):
         return f"sub_category of {self.category.name}"
