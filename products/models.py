@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
+from django.utils.text import slugify
 
 class UserProfile(models.Model):
     """Profil utilisateur étendu depuis User (par défaut Django)"""
@@ -34,6 +34,28 @@ class UserRefreshToken(models.Model):
 
     def __str__(self):
         return f"Refresh token for {self.user.username}"
+
+class Category(models.Model):
+    name =  models.CharField(max_length=255, unique=True),
+    image = models.ImageField(upload_to="categories",blank=True, null=True),
+    created_at = models.DateTimeField(auto_now_add=True),
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"category of {self.name}"
+
+class SubCategory(models.Model):
+    name =  models.CharField(max_length=255, unique=True),
+    image = models.ImageField(upload_to="subcategories",blank=True, null=True),
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='subcateries')
+    created_at = models.DateTimeField(auto_now_add=True),
+    update_at = models.DateTimeField(auto_now=True)
+
+    '''class Meta:
+        unique_together = ("Category", "name")'''
+
+    def __str__(self):
+        return f"sub_category of {self.category.name}"
 
 class Product(models.Model):
     title = models.CharField(max_length=200)
@@ -67,3 +89,4 @@ class ProductImage(models.Model):
 
     def __str__(self):
         return f"Image for {self.product.title}"
+
