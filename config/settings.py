@@ -11,15 +11,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-<<<<<<< HEAD
-import os
-import dj_database_url
-from decouple import config
-=======
 #import dj_database_url
 import os
 #from decouple import config
->>>>>>> fa4eac4a3db203679cd6f8320f4f8e17e6b2bdd8
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -93,18 +87,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-<<<<<<< HEAD
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600,
-        ssl_require=True
-    )
-=======
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
->>>>>>> fa4eac4a3db203679cd6f8320f4f8e17e6b2bdd8
 }
 
 # Password validation
