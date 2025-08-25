@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import UserProfile, UserRefreshToken
+from ..products.models import UserProfile, UserRefreshToken
 
 class UserRefreshTokenSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField(read_only=True)  

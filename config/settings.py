@@ -46,6 +46,10 @@ INSTALLED_APPS = [
     'corsheaders',
     # applications in the project
     'products',
+    'categories',
+    'cart',
+    'orders',
+    'users',
     # activer token
     'rest_framework.authtoken',
 
