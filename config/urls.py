@@ -13,5 +13,6 @@ router.register(r"subcategories", SubCategoryViewSet, basename="subcategory")
 # router.register(r"orders", OrderViewSet, basename="order")
 
 urlpatterns = [
+    path('api/', include('cart.urls')),
     path("api/", include(router.urls)),
 ]
